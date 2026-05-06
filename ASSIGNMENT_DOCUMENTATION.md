@@ -179,52 +179,65 @@ Since the counters are independent, fine-grained locking provides better perform
 
 ### Critical Section #1: Counter Variables
 
-**Which variables**: 
+**Which variables**: Shared counters such as totalwaitingtime and context switches
 
 **Why they need protection**: 
+Because multiple threads update them simultaneously, which may lead to incorrect values
 
-**Synchronization mechanism used**: 
+**Synchronization mechanism used**: ReentrantLock
 
 **Code snippet**:
 ```java
 // Paste your implementation here
-```
+```lock.lock();
+        try {
+            contextSwitchCount++;
+        } finally {
+            lock.unlock();
+        }
 
 **Justification**: 
 
+ensures multual exclusion and prevents race condition
 ---
 
 ### Critical Section #2: Execution Log
 
-**What resource**: 
+**What resource**: shared executionLog(ArrayList)
 
-**Why it needs protection**: 
+**Why it needs protection**: arraylist is not a thread -safe
 
-**Synchronization mechanism used**: 
+**Synchronization mechanism used**: ReentrantLock
 
 **Code snippet**:
 ```java
 // Paste your implementation here
-```
+``` lock.lock();
+        try {
+            executionLog.add(message);
+        } finally {
+            lock.unlock();
+        }
 
-**Justification**: 
+**Justification**: prevent data corruption and exceptions
 
 ---
 
 ### Critical Section #3: CPU Semaphore
 
-**Purpose of semaphore**: 
+**Purpose of semaphore**: control cpu access 
 
-**Number of permits and why**: 
+**Number of permits and why**: (simulate single cpu ) 1
 
-**Where implemented**: 
+**Where implemented**: inside run() method 
 
 **Code snippet**:
 ```java
 // Paste your implementation here
-```
+```SharedResources.cpuSemaphore.acquire();
+    SharedResources.cpuSemaphore.release();
 
-**Effect on program behavior**: 
+**Effect on program behavior**: ensures only one process executes at a time 
 
 ---
 
