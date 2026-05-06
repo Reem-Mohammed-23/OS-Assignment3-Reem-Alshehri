@@ -2,7 +2,7 @@
 
 **Student Name**: [Reem alshehri]  
 **Student ID**: [444051646]  
-**Date Submitted**: [Submission Date]
+**Date Submitted**: [7 may]
 
 ---
 
@@ -187,7 +187,7 @@ Because multiple threads update them simultaneously, which may lead to incorrect
 **Synchronization mechanism used**: ReentrantLock
 
 **Code snippet**:
-```java
+/```java
 // Paste your implementation here
 ```lock.lock();
         try {
@@ -219,7 +219,7 @@ ensures multual exclusion and prevents race condition
             lock.unlock();
         }
 
-**Justification**: prevent data corruption and exceptions
+/**Justification**: prevent data corruption and exceptions
 
 ---
 
@@ -249,54 +249,109 @@ ensures multual exclusion and prevents race condition
 **Testing procedure**: 
 ```bash
 # Commands used (run the program at least 5 times)
-```
+#compile the program 
+     javac SchedulerSimulationSync.java
+
+#run the program at least 5 times 
+java  SchedulerSimulationSync
+java  SchedulerSimulationSync
+java  SchedulerSimulationSync
+java  SchedulerSimulationSync
+java  SchedulerSimulationSync
 
 **Results**: 
 (Show that running multiple times produces consistent, correct results)
+═══ Synchronization Statistics ═══
+Total Context Switches: 38
+Total Completed Processes: 18
+Total Waiting Time: 1732752ms
+Average Waiting Time: 96264ms
 
-**Why synchronization is necessary**: 
-(Explain what race conditions COULD occur without synchronization, even if you didn't observe them. Explain which shared resources need protection and why.)
+═══ Process Summary Table ═══
+Process    Priority     Burst Time   Waiting Time
+────────────────────────────────────────────────
+P1         ٥            ١٠٨٤٢        ١٢٥١١٩      
+P2         ٢            ٣٧٦٣         ٥٠٩٠        
+P3         ٤            ٣٣٤٤         ٨٨٧٧        
+P4         ٤            ٧٦٥٨         ٨٨١٩٥       
+P5         ١            ٤٩٦٤         ١٧٣٠٨       
+P6         ٢            ٩٥١٦         ٩٠٨٦٥       
+P7         ٣            ١٠٤١٠        ١٢٥٩٦٦      
+P8         ٤            ٥٥٤١         ١٠٠٤٦٠      
+P9         ٤            ٦٥٩٥         ١٠١٠٢٠      
+P10        ٢            ١٠٢٦٧        ١٢٦٣٨٨      
+P11        ١            ٥٠٥٢         ١٠٧٧٠٨      
+P12        ٤            ٧٧٢٨         ١٠٧٧٦٦      
+P13        ٢            ٦٧٠٢         ١١٠٥٣٢      
+P14        ٣            ١٢٤٦٩        ١٢٦٦٦٨      
+P15        ٢            ٦٣٣٩         ١١٧٣٠٣      
+P16        ٤            ٦٩٤٩         ١١٨٦٦٦      
+P17        ٣            ١١٣٨٤        ١٢٩١٥٠      
+P18        ٥            ٩٤٢١         ١٢٥٦٧١      
 
-**Conclusion**: 
+═══ Execution Log Summary ═══
+Total log entries: 76
+
+
+**Why synchronization is necessary**
+(Explain what race conditions COULD occur without synchronization, even ifyou didnt observe them. Explain which shared resources need protection and why.)
+
+Without synchronization, race conditions may occur when multiple threads update shared resources like counters and logs. This could result in incorrect totals or missing log entries.
+
+
+
+/**Conclusion**: 
+Synchronization ensures reliable and consistent program behavior.
 
 ---
 
 ### Test 2: Exception Testing
 **What I tested**: Checking for ConcurrentModificationException
 
-**Testing procedure**: 
+**Testing procedure**:  i executed the program multipl time while focusing on oprations involving the shared executionlog list since multiple threads attempt to writ to this list i verified whether any runtime exception occored during execution
 
 **Results**: 
+Exception occurred without synchronization but disappeared after applying synchronization
 
-**What this proves**: 
+**What this proves**: Synchronization is necessary to protect shared collections
 
 ---
 
 ### Test 3: Correctness Verification
 **What I tested**: Verifying correct final values (total burst time, context switches, etc.)
 
-**Expected values**: 
+**Expected values**:  the number of compeletd process should equal the total number of created processs
 
-**Actual values**: 
+**Actual values**: ═══ Synchronization Statistics ═══
+Total Context Switches: 38
+Total Completed Processes: 18
+Total Waiting Time: 1732752ms
+Average Waiting Time: 96264ms
 
-**Analysis**: 
+
+**Analysis**: Confirms that synchronization is correctly implemented
 
 ---
 
 ### Test 4: Different Scenarios
-**Scenario tested**: [e.g., different time quantum, more processes, etc.]
+**Scenario tested**: [e.g., different time quantum, more processes, etc.]Different number of processes
 
-**Purpose**: 
+**Purpose**: To test scalability
 
-**Results**: 
+**Results**: Program handled multiple processes correctly
 
-**What I learned**: 
+**What I learned**: Synchronization ensures stability regardless of input size
 
 ---
 
 ## Part 5: Reflection and Learning
 
 ### What I learned about synchronization:
+I learned that synchronization is essential when multiple threads access shared resources. Without proper synchronization, race conditions can occur and lead to incorrect results. I also understood how locks provide mutual exclusion, ensuring that only one thread can access a critical section at a time. Additionally, I learned how semaphores can control the number of threads accessing a resource, which is useful for managing limited resources like CPU.
+
+One of the main challenges I faced was identifying critical sections in the code and deciding which synchronization mechanism to use. I also learned the importance of releasing locks properly using try-finally blocks to avoid deadlocks.
+
+Overall, this assignment helped me understand how concurrency works in real-world applications and how synchronization ensures data consistency and program correctness.
 
 [6-8 sentences about key concepts, challenges, insights]
 
@@ -307,20 +362,29 @@ ensures multual exclusion and prevents race condition
 Give TWO examples where synchronization is critical:
 
 **Example 1**: 
+Banking systems, where multiple users may access and update the same account balance at the same time. Synchronization ensures that transactions are processed correctly without losing or duplicating money.
+
+
 
 **Example 2**: 
 
+Operating systems, where multiple processes compete for CPU resources. Synchronization ensures fair scheduling and prevents conflicts between processes.
 ---
 
 ### How I would explain synchronization to others:
 
 [Explain to someone who just finished Assignment 1 - use simple terms and analogies]
+Synchronization is like organizing access to a shared resource. Imagine multiple people trying to use the same printer at the same time. Without rules, their tasks may overlap and cause problems.
+
+Using synchronization is like putting a queue in front of the printer, so only one person uses it at a time. Locks act like a key that only one person can hold, while semaphores act like allowing a limited number of people to use the resource at once.
+
+This makes sure everything works correctly without conflicts or errors.
 
 ---
 
 ## Part 6: GitHub Repository Information
 
-**Repository URL**: 
+**Repository URL**: https://github.com/Reem-Mohammed-23/OS-Assignment3-Reem-Alshehri.git
 
 **Number of commits**: 
 
