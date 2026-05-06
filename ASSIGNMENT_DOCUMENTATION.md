@@ -1,7 +1,7 @@
 # Assignment 3 - Complete Documentation
 
-**Student Name**: [Your Full Name]  
-**Student ID**: [Your ID]  
+**Student Name**: [Reem alshehri]  
+**Student ID**: [444051646]  
 **Date Submitted**: [Submission Date]
 
 ---
@@ -31,68 +31,73 @@
 
 Document your development process with **minimum 3 entries** showing progression:
 
-### Entry 1 - [Date, Time]
-**What I implemented**: 
+### Entry 1 - [May 6, 9:00 PM]
+**What I implemented**:
+I started by understanding the given code and identifying shared resources such as counters and execution logs
 
-**Challenges encountered**: 
+**Challenges encountered**: It was difficult to identify where race conditions might occur in the code
 
 **How I solved it**: 
+I carefully traced the execution of threads and analyzed shared variables
 
-**Testing approach**: 
+**Testing approach**:Ran the program multiple times to observe inconsistent results. 
 
-**Time spent**: 
+**Time spent**: 1 hours
+
 
 ---
 
-### Entry 2 - [Date, Time]
-**What I implemented**: 
+### Entry 2 - [May 6,10:00 PM]
+**What I implemented**: I implemented synchronization using ReentrantLock to protect shared counters.
 
-**Challenges encountered**: 
+**Challenges encountered**: I forgot to release the lock properly, which caused the program to freeze.
 
-**How I solved it**: 
+**How I solved it**: I used try-finally blocks to ensure the lock is always released.
 
-**Testing approach**: 
+**Testing approach**: Executed the program multiple times to verify stability.
 
-**Time spent**: 
+**Time spent**: 1 hours
 
 ---
 
-### Entry 3 - [Date, Time]
-**What I implemented**: 
+### Entry 3 - [May 8, :30 PM]
+**What I implemented**:
+I implemented Semaphore to control access to CPU resources and limit concurrent threads. 
 
-**Challenges encountered**: 
+**Challenges encountered**: Understanding how permits affect thread execution
 
-**How I solved it**: 
+**How I solved it**: Tested different permit values and observed behavior
 
-**Testing approach**: 
+**Testing approach**:Compared outputs before and after using Semaphore 
 
-**Time spent**: 
+**Time spent**: 2 hours
 
 ---
 
 ### Entry 4 - [Date, Time]
-**What I implemented**: 
+**What I implemented**:I added synchronization to execution logs to avoid ConcurrentModificationException 
 
-**Challenges encountered**: 
+**Challenges encountered**: Log entries were sometimes missing or duplicated.
 
-**How I solved it**: 
+**How I solved it**:Used synchronized blocks to protect the log. 
 
-**Testing approach**: 
+**Testing approach**: Checked log consistency after multiple runs
 
-**Time spent**: 
+**Time spent**: 30 min
 
 ---
 
 ### Entry 5 - [Date, Time]
-**What I implemented**: 
+**What I implemented**: Final testing and verification of all synchronization mechanisms.
 
-**Challenges encountered**: 
+**Challenges encountered**: Ensuring all parts work together without deadlocks.
 
-**How I solved it**: 
+**How I solved it**: Reviewed lock ordering and tested edge cases.
 
-**Testing approach**: 
+**Testing approach**:Ran the program multiple times and verified consistent results.
+ 
 
-**Time spent**: 
+**Time spent**: 30 min
 
 ---
 
@@ -105,6 +110,7 @@ Document your development process with **minimum 3 entries** showing progression
 - What incorrect behavior could occur?
 
 **Your Answer**:
+
 
 [Your answer here - 4-6 sentences with code examples]
 
