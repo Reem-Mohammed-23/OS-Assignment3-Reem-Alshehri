@@ -386,29 +386,41 @@ This makes sure everything works correctly without conflicts or errors.
 
 **Repository URL**: https://github.com/Reem-Mohammed-23/OS-Assignment3-Reem-Alshehri.git
 
-**Number of commits**: 
+**Number of commits**: 16
 
 **Commit messages**: 
-1. 
-2. 
-3. 
-4. 
-
+1. change my std id number
+2. add ReentrantLock and semaphore for synchronization
+3. add semaphore and import package for synchronaiztion
+4. protect shared counter using reentrantlock
+5.protect the shared varibal completedProcessCount to prevent deadlock
+6.protect shared varibal totalWaitingTime using reentrantlock
+7.protect executionLog
+8.use semaphore to control cpu access in process execution and in final…
+9.apply semaphore in runToCompletion method
+10.answring part 1
+11.answring part 2
+12.answring part 3
+13.answring part 4
+15.answring part 5
+16.answring part 6
 ---
 
 ## Summary
 
-**Total time spent on assignment**: 
+**Total time spent on assignment**: 2 day
 
 **Key takeaways**: 
-1. 
-2. 
-3. 
+1. Synchronization is essential to prevent race conditions
+2. Locks and semaphores serve different purposes in controlling threads
+3. Proper testing is required to ensure program correctness
 
 **Most challenging aspect**: 
+Identifying critical sections and selecting the appropriate synchronization technique for each part of the program.
 
 **What I'm most proud of**: 
 
+Successfully implementing synchronization mechanisms and ensuring that the program produces consistent and correct results across multiple runs.
 ---
 
 **End of Documentation**
