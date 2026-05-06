@@ -349,7 +349,7 @@ Average Waiting Time: 96264ms
 ### What I learned about synchronization:
 I learned that synchronization is essential when multiple threads access shared resources. Without proper synchronization, race conditions can occur and lead to incorrect results. I also understood how locks provide mutual exclusion, ensuring that only one thread can access a critical section at a time. Additionally, I learned how semaphores can control the number of threads accessing a resource, which is useful for managing limited resources like CPU.
 
-One of the main challenges I faced was identifying critical sections in the code and deciding which synchronization mechanism to use. I also learned the importance of releasing locks properly using try-finally blocks to avoid deadlocks.
+One of the main challenges I faced was identifying critical sections in the code and deciding which synchronization mechanism to use. I also learned the importance of releasing locks properly using try-finally blocks to avoid deadlocks.. 
 
 Overall, this assignment helped me understand how concurrency works in real-world applications and how synchronization ensures data consistency and program correctness.
 
