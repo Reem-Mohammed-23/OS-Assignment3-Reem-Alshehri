@@ -31,7 +31,7 @@
 
 Document your development process with **minimum 3 entries** showing progression:
 
-### Entry 1 - [May 6, 9:00 PM]
+### Entry 1 - [May 6, 8:00 PM]
 **What I implemented**:
 I started by understanding the given code and identifying shared resources such as counters and execution logs
 
@@ -47,7 +47,7 @@ I carefully traced the execution of threads and analyzed shared variables
 
 ---
 
-### Entry 2 - [May 6,10:00 PM]
+### Entry 2 - [May 6,9:00 PM]
 **What I implemented**: I implemented synchronization using ReentrantLock to protect shared counters.
 
 **Challenges encountered**: I forgot to release the lock properly, which caused the program to freeze.
@@ -60,7 +60,7 @@ I carefully traced the execution of threads and analyzed shared variables
 
 ---
 
-### Entry 3 - [May 8, :30 PM]
+### Entry 3 - [May 6, 10:00 PM]
 **What I implemented**:
 I implemented Semaphore to control access to CPU resources and limit concurrent threads. 
 
@@ -70,11 +70,11 @@ I implemented Semaphore to control access to CPU resources and limit concurrent 
 
 **Testing approach**:Compared outputs before and after using Semaphore 
 
-**Time spent**: 2 hours
+**Time spent**: 1 hours
 
 ---
 
-### Entry 4 - [Date, Time]
+### Entry 4 - [May 6, 11:00 PM]
 **What I implemented**:I added synchronization to execution logs to avoid ConcurrentModificationException 
 
 **Challenges encountered**: Log entries were sometimes missing or duplicated.
@@ -87,7 +87,7 @@ I implemented Semaphore to control access to CPU resources and limit concurrent 
 
 ---
 
-### Entry 5 - [Date, Time]
+### Entry 5 - [May 6, 11:30 PM]
 **What I implemented**: Final testing and verification of all synchronization mechanisms.
 
 **Challenges encountered**: Ensuring all parts work together without deadlocks.
@@ -111,6 +111,13 @@ I implemented Semaphore to control access to CPU resources and limit concurrent 
 
 **Your Answer**:
 
+A race condition occurs when multiple threads access and modify shared data at the same time without proper synchronization.
+
+The first race condition is on the shared counter variables (such as total burst time or context switches). Multiple threads may update these variables simultaneously, leading to incorrect values. For example, two threads may read the same value and update it, causing one update to be lost.
+
+The second race condition is in the execution log (such as a shared list). If multiple threads write to the log at the same time, it may cause inconsistent data or even a ConcurrentModificationException.
+
+Concurrent access is a problem because threads do not execute in a predictable order. Without synchronization, the program may produce incorrect or inconsistent results.
 
 [Your answer here - 4-6 sentences with code examples]
 
@@ -120,6 +127,11 @@ I implemented Semaphore to control access to CPU resources and limit concurrent 
 **Q**: Explain the difference between ReentrantLock and Semaphore. Where did you use each in your code and why?
 
 **Your Answer**:
+ReentrantLock is used to ensure mutual exclusion, meaning only one thread can access a critical section at a time. It provides more control than synchronized blocks, such as manual lock and unlock operations.
+
+Semaphore, on the other hand, controls access to a resource by allowing a limited number of threads to enter a critical section. It uses permits instead of a single lock.
+
+In my code, I used ReentrantLock to protect shared counters and execution logs because only one thread should modify them at a time. I used Semaphore to simulate CPU access, allowing a limited number of threads to execute concurrently. This improves control over resource allocation.
 
 [Your answer here - explain your implementation choices]
 
@@ -130,6 +142,13 @@ I implemented Semaphore to control access to CPU resources and limit concurrent 
 
 **Your Answer**:
 
+Deadlock occurs when two or more threads are waiting for each other indefinitely, preventing the program from progressing.
+
+One prevention technique is using try-finally blocks to ensure that locks are always released, even if an exception occurs. This avoids situations where a thread holds a lock forever.
+
+Another technique is maintaining a consistent lock ordering, meaning all threads acquire locks in the same order. This prevents circular waiting.
+
+In my code, I used try-finally blocks when working with locks and ensured that locks are released properly. This helped prevent deadlocks and ensured smooth execution.
 [Your answer here - reference try-finally blocks, lock ordering, etc.]
 
 ---
@@ -141,7 +160,16 @@ I implemented Semaphore to control access to CPU resources and limit concurrent 
 - What are the trade-offs between the two approaches?
 - Given that the three counters are independent, which approach provides better concurrency and why?
 
-**Your Answer**:
+**Your Answer**: 
+I used separate locks for each counter (fine-grained locking).
+
+The reason for this choice is that the counters are independent, meaning they can be updated separately without affecting each other. Using separate locks allows multiple threads to update different counters at the same time, improving concurrency.
+
+In contrast, using a single lock (coarse-grained locking) would force all threads to wait even if they are accessing different counters. This reduces performance and increases waiting time.
+
+The trade-off is that fine-grained locking is more complex to implement and manage, while coarse-grained locking is simpler but less efficient.
+
+Since the counters are independent, fine-grained locking provides better performance and scalability.
 
 [Your answer here - explain coarse-grained vs fine-grained locking, independence of counters, concurrency implications. Show understanding of when to use each approach. 5-8 sentences expected.]
 
